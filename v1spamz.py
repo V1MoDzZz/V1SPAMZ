@@ -1,7 +1,7 @@
 import socket
 import sys
 
-
+sys.ps1 = '\033[01;32m '
 print(sys.ps1)
 print('''
 
