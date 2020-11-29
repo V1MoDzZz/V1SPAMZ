@@ -38,4 +38,4 @@ for i in range(int(T1)):
     data = s.recv(BUFFER_SIZE)
     print('spamming '+TCP_IP)
 s.close()
-print("spam completed now go to back to bed")
+print("spam complete now go to back to bed")
